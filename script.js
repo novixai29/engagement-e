@@ -54,15 +54,7 @@ const musicIcon =
     "musicIcon"
   );
 
-const trailerVideo =
-  document.getElementById(
-    "trailerVideo"
-  );
 
-const videoPlayButton =
-  document.getElementById(
-    "videoPlayButton"
-  );
 
 const calendarButton =
   document.getElementById(
