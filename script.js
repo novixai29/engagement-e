@@ -8,6 +8,11 @@
    توقيت العراق +03:00
 ========================================== */
 
+
+/* ==========================================
+   موعد الخطوبة
+========================================== */
+
 const engagementDate =
   new Date(
     "2026-12-19T19:00:00+03:00"
@@ -24,30 +29,36 @@ const cinemaIntro =
     "cinemaIntro"
   );
 
+
 const introSteps =
   document.querySelectorAll(
     ".intro-step"
   );
+
 
 const enterMovieButton =
   document.getElementById(
     "enterMovieButton"
   );
 
+
 const bgMusic =
   document.getElementById(
     "bgMusic"
   );
+
 
 const musicControl =
   document.getElementById(
     "musicControl"
   );
 
+
 const musicToggle =
   document.getElementById(
     "musicToggle"
   );
+
 
 const musicIcon =
   document.getElementById(
@@ -55,16 +66,17 @@ const musicIcon =
   );
 
 
-
 const calendarButton =
   document.getElementById(
     "calendarButton"
   );
 
+
 const shareButton =
   document.getElementById(
     "shareButton"
   );
+
 
 const shareMessage =
   document.getElementById(
@@ -80,11 +92,14 @@ const shareMessage =
 let movieStarted =
   false;
 
+
 let currentIntroStep =
   0;
 
+
 let introTimer =
   null;
+
 
 let countdownInterval =
   null;
@@ -99,6 +114,7 @@ bgMusic.volume =
   0.65;
 
 
+
 function updateMusicIcon() {
 
   if (
@@ -109,6 +125,7 @@ function updateMusicIcon() {
       "fa-volume-high"
     );
 
+
     musicIcon.classList.add(
       "fa-volume-xmark"
     );
@@ -118,6 +135,7 @@ function updateMusicIcon() {
     musicIcon.classList.remove(
       "fa-volume-xmark"
     );
+
 
     musicIcon.classList.add(
       "fa-volume-high"
@@ -139,6 +157,7 @@ async function toggleMusic() {
 
       await bgMusic.play();
 
+
       updateMusicIcon();
 
     } catch (error) {
@@ -152,6 +171,7 @@ async function toggleMusic() {
   } else {
 
     bgMusic.pause();
+
 
     updateMusicIcon();
 
@@ -169,7 +189,7 @@ musicToggle.addEventListener(
 
 
 /* ==========================================
-   مقدمة الفيلم
+   المقدمة السينمائية
 ========================================== */
 
 function showIntroStep(
@@ -191,9 +211,11 @@ function showIntroStep(
     introSteps[index]
   ) {
 
-    introSteps[index].classList.add(
-      "active"
-    );
+    introSteps[index]
+      .classList
+      .add(
+        "active"
+      );
 
   }
 
@@ -229,9 +251,11 @@ function runIntroSequence() {
           );
 
 
-          enterMovieButton.classList.add(
-            "visible"
-          );
+          enterMovieButton
+            .classList
+            .add(
+              "visible"
+            );
 
 
           return;
@@ -256,7 +280,7 @@ runIntroSequence();
 
 
 /* ==========================================
-   دخول الفيلم
+   دخول الدعوة
 ========================================== */
 
 async function startMovie() {
@@ -274,19 +298,24 @@ async function startMovie() {
     true;
 
 
-  cinemaIntro.classList.add(
-    "hidden"
-  );
+  cinemaIntro
+    .classList
+    .add(
+      "hidden"
+    );
 
 
-  musicControl.classList.add(
-    "visible"
-  );
+  musicControl
+    .classList
+    .add(
+      "visible"
+    );
 
 
   try {
 
     await bgMusic.play();
+
 
     updateMusicIcon();
 
@@ -304,9 +333,11 @@ async function startMovie() {
 
       window.scrollTo({
 
-        top: 0,
+        top:
+          0,
 
-        behavior: "instant"
+        behavior:
+          "instant"
 
       });
 
@@ -318,11 +349,11 @@ async function startMovie() {
 
 
 
-enterMovieButton.addEventListener(
-  "click",
-  startMovie
-);
-
+enterMovieButton
+  .addEventListener(
+    "click",
+    startMovie
+  );
 
 
 
@@ -336,6 +367,7 @@ const revealElements =
   );
 
 
+
 const revealObserver =
   new IntersectionObserver(
     entries => {
@@ -347,14 +379,17 @@ const revealObserver =
             entry.isIntersecting
           ) {
 
-            entry.target.classList.add(
-              "visible"
-            );
+            entry.target
+              .classList
+              .add(
+                "visible"
+              );
 
 
-            revealObserver.unobserve(
-              entry.target
-            );
+            revealObserver
+              .unobserve(
+                entry.target
+              );
 
           }
 
@@ -388,7 +423,7 @@ revealElements.forEach(
 
 
 /* ==========================================
-   العداد
+   العداد التنازلي
 ========================================== */
 
 function updateCountdown() {
@@ -402,6 +437,7 @@ function updateCountdown() {
     now;
 
 
+
   if (
     distance <= 0
   ) {
@@ -411,15 +447,18 @@ function updateCountdown() {
     ).textContent =
       "00";
 
+
     document.getElementById(
       "hours"
     ).textContent =
       "00";
 
+
     document.getElementById(
       "minutes"
     ).textContent =
       "00";
+
 
     document.getElementById(
       "seconds"
@@ -449,22 +488,29 @@ function updateCountdown() {
   }
 
 
+
   const days =
     Math.floor(
+
       distance /
+
       (
         1000 *
         60 *
         60 *
         24
       )
+
     );
+
 
 
   const hours =
     Math.floor(
+
       (
         distance %
+
         (
           1000 *
           60 *
@@ -472,45 +518,61 @@ function updateCountdown() {
           24
         )
       )
+
       /
+
       (
         1000 *
         60 *
         60
       )
+
     );
+
 
 
   const minutes =
     Math.floor(
+
       (
         distance %
+
         (
           1000 *
           60 *
           60
         )
       )
+
       /
+
       (
         1000 *
         60
       )
+
     );
+
 
 
   const seconds =
     Math.floor(
+
       (
         distance %
+
         (
           1000 *
           60
         )
       )
+
       /
+
       1000
+
     );
+
 
 
   document.getElementById(
@@ -524,6 +586,7 @@ function updateCountdown() {
     );
 
 
+
   document.getElementById(
     "hours"
   ).textContent =
@@ -535,6 +598,7 @@ function updateCountdown() {
     );
 
 
+
   document.getElementById(
     "minutes"
   ).textContent =
@@ -544,6 +608,7 @@ function updateCountdown() {
       2,
       "0"
     );
+
 
 
   document.getElementById(
@@ -563,6 +628,7 @@ function updateCountdown() {
 updateCountdown();
 
 
+
 countdownInterval =
   setInterval(
     updateCountdown,
@@ -572,7 +638,7 @@ countdownInterval =
 
 
 /* ==========================================
-   ICS
+   تنسيق ICS
 ========================================== */
 
 function formatICSDate(
@@ -593,6 +659,10 @@ function formatICSDate(
 }
 
 
+
+/* ==========================================
+   إضافة الموعد للتقويم
+========================================== */
 
 function addToCalendar() {
 
@@ -624,20 +694,25 @@ END:VEVENT
 END:VCALENDAR`;
 
 
+
   const blob =
     new Blob(
       [content],
       {
+
         type:
           "text/calendar;charset=utf-8"
+
       }
     );
+
 
 
   const url =
     URL.createObjectURL(
       blob
     );
+
 
 
   const link =
@@ -675,20 +750,21 @@ END:VCALENDAR`;
 
 
 
-calendarButton.addEventListener(
-  "click",
-  addToCalendar
-);
+calendarButton
+  .addEventListener(
+    "click",
+    addToCalendar
+  );
 
 
 
 /* ==========================================
-   SHARE
+   مشاركة الدعوة
 ========================================== */
 
 async function shareInvitation() {
 
-  const data = {
+  const shareData = {
 
     title:
       "Our Engagement Movie — كريم ونور",
@@ -702,6 +778,7 @@ async function shareInvitation() {
   };
 
 
+
   if (
     navigator.share
   ) {
@@ -709,7 +786,7 @@ async function shareInvitation() {
     try {
 
       await navigator.share(
-        data
+        shareData
       );
 
     } catch (error) {
@@ -726,11 +803,14 @@ async function shareInvitation() {
   }
 
 
+
   try {
 
-    await navigator.clipboard.writeText(
-      window.location.href
-    );
+    await navigator
+      .clipboard
+      .writeText(
+        window.location.href
+      );
 
 
     shareMessage.textContent =
@@ -758,7 +838,8 @@ async function shareInvitation() {
 
 
 
-shareButton.addEventListener(
-  "click",
-  shareInvitation
-);
+shareButton
+  .addEventListener(
+    "click",
+    shareInvitation
+  );
